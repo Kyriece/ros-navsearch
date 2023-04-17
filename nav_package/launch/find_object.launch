@@ -10,7 +10,7 @@
         <param if="$(arg recognize)" name="objects_path" value="$(find my_package)/image_rec/"/>
     </node>
 
-    <node pkg="my_package" type="objects_subscriber.py" name="objects_subscriber" output="screen"/>
-    <node pkg="my_package" type="wallfollower.py" name="wall_follower" output="screen"/>
+    <node pkg="nav_package" type="objects_subscriber.py" name="objects_subscriber" output="screen"/>
+    <node pkg="nav_package" type="wallfollower.py" name="wall_follower" output="screen"/>
     
 </launch>
