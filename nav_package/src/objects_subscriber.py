@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 import rospy
 import subprocess
 from std_msgs.msg import Float32MultiArray
@@ -16,7 +16,7 @@ def callback(data):
         id = data.data[0]
         # Recognise Start
         print(id)
-        if id == 1:
+        if id == 13:
             publisher.publish("GO")            
     else:
         print("Couldnt see anything")
