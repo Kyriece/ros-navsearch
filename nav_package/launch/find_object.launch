@@ -1,0 +1,16 @@
+<launch>
+    <!-- REFERENCE: find_object_2d package -->
+    <arg name="teach" default="false"/>
+    <arg name="recognize" default="true"/>
+
+    <arg if="$(arg recognize)" name="chosen_world" value="rosbot_world_recognition"/>
+    <node pkg="find_object_2d" type="find_object_2d" name="find_object_2d">
+        <remap from="image" to="/camera/rgb/image_raw"/>
+        <param name="gui" value="$(arg teach)"/>
+        <param if="$(arg recognize)" name="objects_path" value="$(find my_package)/image_rec/"/>
+    </node>
+
+    <node pkg="my_package" type="objects_subscriber.py" name="objects_subscriber" output="screen"/>
+    <node pkg="my_package" type="wallfollower.py" name="wall_follower" output="screen"/>
+    
+</launch>
