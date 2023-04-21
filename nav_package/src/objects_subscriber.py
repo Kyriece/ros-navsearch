@@ -14,7 +14,9 @@ def callback(data):
     if len(data.data) > 0:
         id = data.data[0]
         # Recognise Start
-        if id == 'start':
+        print(id)
+        if id == 13.0:
+            print("id matches start")
             start_publisher.publish("GO")  
         # Recognise hazard and create Marker
         else:          
@@ -23,10 +25,12 @@ def callback(data):
             marker.header.frame_id = "map"
             marker.type = Marker.SPHERE
             marker.action = Marker.ADD
-            marker.scale.x = 0.5
-            marker.scale.y = 0.5
-            marker.scale.z = 0.5
-            marker.color.r = 1.0
+            marker.scale.x = 0.1
+            marker.scale.y = 0.1
+            marker.scale.z = 0.1
+            marker.color.g = 150.0
+            marker.color.b = 200.0
+            marker.color.a = 1.0
 
             # Calculate the position of the image
             mapped_x, mapped_y = calculatePosition()
@@ -38,6 +42,8 @@ def callback(data):
             marker_publisher.publish(marker)
 
             rospy.sleep(0.1)
+    else:
+        print("COULDNT SEE ANYTHING")
 
 def listener():
     rospy.init_node('listener', anonymous=True)
